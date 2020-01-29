@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/home/csusb.edu/005461881/CSE401/Lab1/mux_isim_beh.exe" -prj "/home/csusb.edu/005461881/CSE401/Lab1/mux_beh.prj" "work.mux" "work.glbl" 
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/home/csusb.edu/005461881/CSE401/CSE401_Labs/Lab1/incr_test2_isim_beh.exe" -prj "/home/csusb.edu/005461881/CSE401/CSE401_Labs/Lab1/incr_test2_beh.prj" "work.incr_test2" "work.glbl" 

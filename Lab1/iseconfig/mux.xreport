@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2020-01-14T17:13:44</DateModified>
+  <DateModified>2020-01-28T16:33:28</DateModified>
   <ModuleName>mux</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
-  <SavedFilePath>/home/csusb.edu/005461881/CSE401/Lab1/iseconfig/mux.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>/home/csusb.edu/005461881/CSE401/Lab1</ImplementationReportsDirectory>
+  <SavedFilePath>/home/csusb.edu/005461881/CSE401/CSE401_Labs/Lab1/iseconfig/mux.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>/home/csusb.edu/005461881/CSE401/CSE401_Labs/Lab1/</ImplementationReportsDirectory>
   <DateInitialized>2020-01-14T17:13:44</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
