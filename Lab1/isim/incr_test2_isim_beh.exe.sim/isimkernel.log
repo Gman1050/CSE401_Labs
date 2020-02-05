@@ -1,29 +1,10 @@
 Command line:
    incr_test2_isim_beh.exe
      -simmode  gui
-     -simrunnum  0
-     -socket  56903
+     -simrunnum  1
+     -socket  60155
 
-Tue Jan 28 16:53:45 2020
+Tue Feb 04 14:25:08 2020
 
 
- Elaboration Time: 0.01 sec
-
- Current Memory Usage: 183.98 Meg
-
- Total Signals          : 16
- Total Nets             : 77
- Total Signal Drivers   : 7
- Total Blocks           : 3
- Total Primitive Blocks : 2
- Total Processes        : 10
- Total Traceable Variables  : 19
- Total Scalar Nets and Variables : 189
-Total Line Count : 26
-
- Total Simulation Time: 0.01 sec
-
- Current Memory Usage: 259.482 Meg
-
-Tue Jan 28 16:53:54 2020
-
+ Elaboration Time: 0.09375 sec
