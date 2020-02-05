@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2020-02-04T16:43:07</DateModified>
+  <DateModified>2020-02-04T16:52:58</DateModified>
   <ModuleName>IDECODE</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
   <SavedFilePath>C:/Users/Ryan/Desktop/CSE401_Labs/Lab_2/iseconfig/IDECODE.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/Users/Ryan/Desktop/CSE401_Labs/Lab_2</ImplementationReportsDirectory>
+  <ImplementationReportsDirectory>C:/Users/Ryan/Desktop/CSE401_Labs/Lab_2\</ImplementationReportsDirectory>
   <DateInitialized>2020-02-04T16:43:07</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
