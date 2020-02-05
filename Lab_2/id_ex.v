@@ -17,28 +17,28 @@ module id_ex(
 initial 
 begin
       //Assign 0's to everything
-  		wb_ctlout <= 0;
-	  	m_ctlout <= 0;
-	  	regdst <= 0;
-	  	aluop <= 0;
-	  	alusrc <= 0;
-	  	npcout <= 0;
-	  	rdata1out <= 0; 
-	  	rdata2out <= 0; 
-	  	s_extendout <= 0;
-		instrout_2016 <= 0; 
-		instrout_1511 <= 0;
+  		wb_ctlout <= 2'b0;
+	  	m_ctlout <= 3'b0; //Based on figure 2.3
+	  	regdst <= 1'b0; // Figure 2.2
+	  	aluop <=  2'b0;
+	  	alusrc <= 1'b0;
+	  	npcout <= 32'b0; //All below based on figure 2.6
+	  	rdata1out <=  32'b0;
+	  	rdata2out <=  32'b0;
+	  	s_extendout <= 32'b0;
+		  instrout_2016 <= 5'b0;
+		  instrout_1511 <= 5'b0;
 end
 
 always @ * 
 begin
-     //Wire the inputs to the outputs corresponding outputs
+     //Wire the inputs to the outputs corresponding outputs based on figre 2.6
  		 #1
 	 	 wb_ctlout <= ctlwb_out;
 		 m_ctlout <= ctlm_out;
-		 regdst <= ctlex_out[0];//could be swapped below
-		 aluop <= ctlex_out[2:1];
-		 alusrc <= ctlex_out[3];//could be swapped above
+		 regdst <= 
+		 aluop <= //figure 2.2 ALUOP contril bit
+		 alusrc <= 
 		 npcout <= npc;
 		 rdata1out <= readdat1;
 		 rdata2out <= readdat2;
