@@ -1,6 +1,5 @@
 `timescale 1ns / 1ps
 module reg_test;
-   wire [31:0] data_rs, data_rt;
 
    reg [4:0]  addr_rs, addr_rt, write_addr;
    reg [31:0] write_data;
@@ -31,9 +30,5 @@ module reg_test;
         
         #1 $finish;
      end
-
-   registerfile regfile(.data_rs_out(data_rs), .data_rt_out(data_rt),
-                        .rs_in(addr_rs), .rt_in(addr_rt),
-                        .write_addr_in(write_addr), .write_data_in(write_data), .regWrite_in(regWrite));
    
 endmodule

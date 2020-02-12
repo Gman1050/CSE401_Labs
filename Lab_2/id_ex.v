@@ -36,9 +36,9 @@ begin
  		 #1
 	 	 wb_ctlout <= ctlwb_out;
 		 m_ctlout <= ctlm_out;
-		 regdst <= 
-		 aluop <= //figure 2.2 ALUOP contril bit
-		 alusrc <= 
+		 regdst <= ctlex_out;
+		 aluop <= ctlex_out; //figure 2.2 ALUOP contril bit
+		 alusrc <= ctlex_out;
 		 npcout <= npc;
 		 rdata1out <= readdat1;
 		 rdata2out <= readdat2;
