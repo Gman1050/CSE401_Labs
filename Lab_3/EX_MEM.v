@@ -12,7 +12,9 @@ module ex_mem(
 	output	reg	[31:0]	add_result,
 	output	reg				zero,
 	output	reg	[31:0]	alu_result, rdata2out,
-	output	reg	[4:0]		five_bit_muxout
+	output	reg	[4:0]		five_bit_muxout,
+	input  wire         EX_MEM_PCSrc,
+   input  wire  [31:0] EX_MEM_NPC
     );
 
 	initial begin
@@ -28,51 +30,25 @@ module ex_mem(
 		#1 //Update Delay
 		
 		//Use Fig 3.7 to assign the inputs to the outputs 
-		wb_ctlout <= ;
-		branch <= ;    /* branch, memread, and memwrite are not listed in Fig 3.7 
-		memread <=;       so what do we do wit them?
-		memwrite <= ;     Well we code them, obviously.
-                   	                          Here's your hint for these 3: 
-                                                               Look at their size (listed in the port listings on top)
-                                                               Figure out which input wire needs to get assigned to them.
-                                                               Then trace the wires in the "MIPS Data Path Diagram" 
+		wb_ctlout <= ctlwb_out;
+		branch <= ctlm_out[2];    
+		memread <= ctlm_out[1];      
+		memwrite <= ctlm_out[0];    
+		
+		/* branch, memread, and memwrite are not listed in Fig 3.7 
+		so what do we do wit them?
+		Well we code them, obviously.
+      Here's your hint for these 3: 
+      Look at their size (listed in the port listings on top)
+      Figure out which input wire needs to get assigned to them.
+      Then trace the wires in the "MIPS Data Path Diagram" 
                                               */
             
-          	add_result <= ;   
-		zero <= ;
-		alu_result <= ;
-		rdata2out <= ;
-		five_bit_muxout <= ;
+      add_result <= adder_out;   
+		zero <= aluzero;
+		alu_result <= aluout;
+		rdata2out <= readdat2;
+		five_bit_muxout <= muxout;
 	end
 
 endmodule // ex_mem
-
-//`timescale 1ns / 1ps
-////////////////////////////////////////////////////////////////////////////////
-//Ben Alexander
-//Ryan Holland
-//Ryan Zagala
-////////////////////////////////////////////////////////////////////////////////
-//module memory(
-//   output reg [31:0] data,       // Output of Instruction Memory
-//  input wire [31:0] addr        // Input of Instruction Memory
-//   );
-// Register Declarations
-//   reg [31:0] MEM[0:127];  // 128 words of 32-bit memory
-
-// Initialize Registers
-//   initial begin
-//   MEM[0] <= 'hA00000AA;
-//   MEM[1] <= 'h10000011;
-//   MEM[2] <= 'h20000022;
-//   MEM[3] <= 'h30000033;
-//   MEM[4] <= 'h40000044;
-//   MEM[5] <= 'h50000055;
-//   MEM[6] <= 'h60000066;
-//   MEM[7] <= 'h70000077;
-//   MEM[8] <= 'h80000088;
-//   MEM[9] <= 'h90000099;
-//   end
-   
-//   always @ (addr) data <= MEM[addr];
-//endmodule

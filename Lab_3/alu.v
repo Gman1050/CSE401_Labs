@@ -8,17 +8,17 @@ module alu(
     output	wire				zero
     );
 
-	parameter	ALUadd		=	/* Get these values from
-					ALUsub		=	  
-					ALUand		=	    Figure 3.2 in Lab Manual      
-					ALUor			=	
-					ALUslt		=	*/
+	parameter	ALUadd		=	3'b010,
+					ALUsub		=	3'b110,
+					ALUand		=	3'b000,  
+					ALUor			=	3'b001,
+					ALUslt		=	3'b111;
 					
 					
 	
 	// Handles negative inputs
 	wire sign_mismatch;
-	assign sign_mismatch = ;
+	assign sign_mismatch = a[31] ^ b[31];
 	
 	initial
 		result <= 0;
@@ -34,7 +34,9 @@ module alu(
 			default:			result = 32'bX;	// control = ALUx | *
 		endcase
 		
-		assign zero = ; /*check to see if result is equal to zero. if it is assign it true (1). if it isn't assign it false (0)
+		assign zero = (result==0) ? 1'b1 : 1'b0; 
+		
+		/*check to see if result is equal to zero. if it is assign it true (1). if it isn't assign it false (0)
 													    Complete this line using a turnary operator. If you don't know what that is then Google it. 
 													    
 														 P.S. I tabbed all of these lines, so you might want to delete these comments after you implement this line or

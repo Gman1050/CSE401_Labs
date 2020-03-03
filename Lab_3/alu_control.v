@@ -8,13 +8,13 @@ module alu_control(
     );
 	
 	
-	parameter	Rtype 		=	//this is a 2 bit paramter,
+	parameter	Rtype 		=	2'b10,//this is a 2 bit paramter,
 			//These are the function field paramters for Rtype. Use Fig 3.2 to complete
-					Radd			=	,
-					Rsub			=	,
-					Rand			=	,
-					Ror			=	,
-					Rslt			=	;
+					Radd			=	6'b100000,
+					Rsub			=	6'b100010,
+					Rand			=	6'b100100,
+					Ror			=	6'b100101,
+					Rslt			=	6'b101010;
 	
 	parameter	lwsw			=	2'b00,		//since LW and SW use the same bit pattern, only way to store them as a paramter
 					Itype			=	2'b01,		// beq
@@ -40,11 +40,11 @@ module alu_control(
 			case(funct)
 			   //assign the correct select value baesd on the function field.
 				//Use Fig 3.2 to aid you in this.
-				Radd:			select <= ;
-				Rsub:			select <= ;
-				Rand:			select <= ;
-				Ror:			select <= ;
-				Rslt:			select <= ;
+				Radd:			select <= ALUadd;
+				Rsub:			select <= ALUsub;
+				Rand:			select <= ALUand;
+				Ror:			select <= ALUor;
+				Rslt:			select <= ALUslt;
 				default:		select <= ALUx;
 			endcase
 	    end
@@ -54,12 +54,12 @@ module alu_control(
 		
 		else if (aluop == lwsw)
       begin
-			select <= ;
+			select <= ALUadd;
 		end
 		
 		else if (aluop == Itype)
       begin		
-		   select <= ;
+		   select <= ALUsub;//???
 		end
 		
 		else if (aluop == unknown)

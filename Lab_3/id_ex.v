@@ -1,49 +1,67 @@
 `timescale 1ns / 1ps
-/*   id_ex.v  */
-module id_ex(
-	input		wire 	[1:0]		ctlwb_out,
-	input		wire 	[2:0]		ctlm_out,
-	input		wire 	[3:0]		ctlex_out,
-	input		wire 	[31:0]	npc, readdat1, readdat2, signext_out,
-	input		wire	[4:0]		instr_2016, instr_1511,
-	output	reg	[1:0]		wb_ctlout,
-	output	reg	[2:0]		m_ctlout,
-	output	reg				regdst, alusrc,
-	output	reg	[1:0]		aluop, 
-	output	reg 	[31:0]	npcout, rdata1out, rdata2out, s_extendout,
-	output	reg	[4:0]		instrout_2016, instrout_1511
- );
-		
-initial 
-begin
-      //Assign 0's to everything
-  		wb_ctlout <= 2'b0;
-	  	m_ctlout <= 3'b0; //Based on figure 2.3
-	  	regdst <= 1'b0; // Figure 2.2
-	  	aluop <=  2'b0;
-	  	alusrc <= 1'b0;
-	  	npcout <= 32'b0; //All below based on figure 2.6
-	  	rdata1out <=  32'b0;
-	  	rdata2out <=  32'b0;
-	  	s_extendout <= 32'b0;
-		  instrout_2016 <= 5'b0;
-		  instrout_1511 <= 5'b0;
-end
+/* IDECODE.v  */
 
-always @ * 
-begin
-     //Wire the inputs to the outputs corresponding outputs based on figre 2.6
- 		 #1
-	 	 wb_ctlout <= ctlwb_out;
-		 m_ctlout <= ctlm_out;
-		 regdst <= ctlex_out;
-		 aluop <= ctlex_out; //figure 2.2 ALUOP contril bit
-		 alusrc <= ctlex_out;
-		 npcout <= npc;
-		 rdata1out <= readdat1;
-		 rdata2out <= readdat2;
-		 s_extendout <= signext_out;
-		 instrout_2016 <= instr_2016;
-		 instrout_1511 <= instr_1511;
-end
-endmodule //id_ex
+/* This is the second stage fully instantiated and wired. 
+   This is the last time a fully wired stage will be provided.
+   Take notes.
+*/
+	
+module IDECODE(
+	input		wire  [31:0]	IF_ID_instrout,
+   input		wire  [31:0]	IF_ID_npcout,
+	input		wire	[4:0]		MEM_WB_rd,
+	input		wire				MEM_WB_regwrite,
+	input		wire	[31:0]	WB_mux5_writedata,
+	output	wire	[1:0]		wb_ctlout,
+	output	wire	[2:0]		m_ctlout,
+	output	wire				regdst, alusrc,
+	output	wire	[1:0]		aluop, 
+	output	wire	[31:0]	npcout, rdata1out, rdata2out, s_extendout,
+	output	wire	[4:0]		instrout_2016, instrout_1511
+	 );
+
+	// signals
+	wire [3:0]	ctlex_out;
+	wire [2:0]	ctlm_out;
+	wire [1:0]	ctlwb_out;
+	wire [31:0]	readdat1, readdat2, signext_out;
+	
+	// instantiations
+	control control2		(.opcode(IF_ID_instrout[31:26]),
+								.EX(ctlex_out),
+								.M(ctlm_out),
+								.WB(ctlwb_out));
+	
+	register register2	(.rs(IF_ID_instrout[25:21]),
+								.rt(IF_ID_instrout[20:16]),
+								.rd(MEM_WB_rd),
+								.writedata(WB_mux5_writedata),
+								.regwrite(MEM_WB_regwrite),
+								.A(readdat1),
+								.B(readdat2));
+	
+	s_extend s_extend2	(.nextend(IF_ID_instrout[15:0]),
+								.extend(signext_out));
+	
+	id_ex id_ex2 	(.ctlwb_out(ctlwb_out),
+								.ctlm_out(ctlm_out),
+								.ctlex_out(ctlex_out),
+								.npc(IF_ID_npcout),
+								.readdat1(readdat1),
+								.readdat2(readdat2),
+								.signext_out(signext_out),
+								.instr_2016(IF_ID_instrout[20:16]),
+								.instr_1511(IF_ID_instrout[15:11]),
+								.wb_ctlout(wb_ctlout),
+								.m_ctlout(m_ctlout),
+								.regdst(regdst),
+								.alusrc(alusrc),
+								.aluop(aluop),
+								.npcout(npcout),
+								.rdata1out(rdata1out),
+								.rdata2out(rdata2out),
+								.s_extendout(s_extendout),
+								.instrout_2016(instrout_2016),
+								.instrout_1511(instrout_1511));
+								
+endmodule // IDECODE

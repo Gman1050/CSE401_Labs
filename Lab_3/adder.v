@@ -6,6 +6,6 @@ module adder(
     output	wire	[31:0]	add_out
     );
 	 
-	assign add_out = //Let you figure this one out;
+	assign add_out = add_in1 + add_in2; //Let you figure this one out;
 
 endmodule
